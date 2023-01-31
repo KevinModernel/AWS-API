@@ -16,7 +16,7 @@ try {
 };
 
 app.get('/', async (req, res) => {
-	const playlistLink = await searchArtists('duki');
+	//const playlistLink = await searchArtists('duki');
 	res.send('<h1>Express con HTML!! 8) </h1>');
 	//res.end(JSON.stringify({link: playlistLink}) )
 })
