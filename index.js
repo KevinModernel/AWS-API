@@ -33,9 +33,9 @@ app.get('/:input', async (req, res) => {
 
 	// Validate playlistLink.
 	if (playlistLink == false) {
-		res.end(JSON.stringify({link: "Request failed. Try again!"}))		
+		res.send(JSON.stringify({link: "Request failed. Try again!"}))		
 	} else {
-		res.end(JSON.stringify({link: playlistLink}))
+		res.send(JSON.stringify({link: playlistLink}))
 	};
 })
 
