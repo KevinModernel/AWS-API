@@ -59,7 +59,7 @@ const CreatePlayList = async (musicianName, apiRecommendationsLink) => {
 
 	// Concatenate IDs + youtube base url for playlist.
 	let playlistURL;
-	playlistURL = 'https://www.youtube.com/watch_videos?video_ids='+videosIDs[0]+','+videosIDs[1]+','+videosIDs[2]+','+videosIDs[3];
+	playlistURL = 'http://www.youtube.com/watch_videos?video_ids='+videosIDs[0]+','+videosIDs[1]+','+videosIDs[2]+','+videosIDs[3];
 	console.log(playlistURL);
 	
 	return playlistURL;
