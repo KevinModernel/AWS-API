@@ -1,10 +1,16 @@
-// Montar express server, y mandar algo al front (.jSON), y eso lo subis a aws. Primero probalo en local.
 const express = require('express');
 const axios = require('axios');
 const Scraper = require('@yimura/scraper').default;
+const cors = require('cors');
 
 const app = express();
-const youtube = new Scraper()
+const youtube = new Scraper();
+
+const corsOptions = {
+   origin:'*', 
+   credentials:true,
+   optionSuccessStatus:200,
+};
 
 const apiRecommendationsLink = "https://tastedive.com/api/similar?q=";
 
@@ -16,6 +22,8 @@ try {
 } catch (e) {
 	console.error('Unable to stablish server: ', e);
 };
+
+app.use(cors(corsOptions))
 
 // Handle GET request.
 app.get('/:input', async (req, res) => {
