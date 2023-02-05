@@ -30,10 +30,9 @@ app.get('/:input', async (req, res) => {
 	const { input } = req.params
 	// Create playlist link, scrapping youtube video IDs.
 	const playlistLink = await CreatePlayList(input, apiRecommendationsLink);
-	console.log("playlistLink");
-	console.log(playlistLink);
+
 	// Validate playlistLink.
-	if (playlistLink == false) {
+	if (playlistLink === false) {
 		res.send(JSON.stringify({link: "Request failed. Try again!"}))		
 	} else {
 		res.send(JSON.stringify({link: playlistLink}))
@@ -45,17 +44,14 @@ const CreatePlayList = async (musicianName, apiRecommendationsLink) => {
 
 	// HTTP GET Request to get recommendations.
 	const APIRecommendations = await getAPIRecommendations(musicianName, apiRecommendationsLink);
-	console.log("APIRecommendations")
-	console.log(APIRecommendations)
 	// Validate API Recommendations response. If False, end process.
-	if (APIRecommendations == false) {
+	if (APIRecommendations === false) {
 		return false
 	};
 
 	// Store first 4 recommendations.
 	const recommendations = await storeRecommendations(APIRecommendations);
 	console.log(recommendations);
-
 	// For each recommendation, get 4 ID videos.
 	const videosIDs = await getVideosIDs(recommendations);
 
@@ -71,12 +67,13 @@ const CreatePlayList = async (musicianName, apiRecommendationsLink) => {
 const getAPIRecommendations = async (musicianName, apiRecommendationsLink) => {
 	try {
 		let response = await axios.get(`${apiRecommendationsLink}${musicianName}`);
+
 		// Validated whether response results are empty or not.
-		if(response.Similar.Results[0].length === 0) {
+		if(response.data.Similar.Results[0].length === 0) {
 			return false
 		} else {
 			return response
-		}:
+		}
 	} catch (error) {
 		console.log('API tasteDive failed request. Retry.');
 		return false
