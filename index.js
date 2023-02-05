@@ -30,7 +30,8 @@ app.get('/:input', async (req, res) => {
 	const { input } = req.params
 	// Create playlist link, scrapping youtube video IDs.
 	const playlistLink = await CreatePlayList(input, apiRecommendationsLink);
-
+	console.log("playlistLink");
+	console.log(playlistLink);
 	// Validate playlistLink.
 	if (playlistLink == false) {
 		res.send(JSON.stringify({link: "Request failed. Try again!"}))		
@@ -44,7 +45,7 @@ const CreatePlayList = async (musicianName, apiRecommendationsLink) => {
 
 	// HTTP GET Request to get recommendations.
 	const APIRecommendations = await getAPIRecommendations(musicianName, apiRecommendationsLink);
-
+	console.log("APIRecommendations")
 	// Validate API Recommendations response. If False, end process.
 	if (APIRecommendations == false) {
 		return false
