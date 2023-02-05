@@ -46,6 +46,7 @@ const CreatePlayList = async (musicianName, apiRecommendationsLink) => {
 	// HTTP GET Request to get recommendations.
 	const APIRecommendations = await getAPIRecommendations(musicianName, apiRecommendationsLink);
 	console.log("APIRecommendations")
+	console.log(APIRecommendations)
 	// Validate API Recommendations response. If False, end process.
 	if (APIRecommendations == false) {
 		return false
@@ -70,7 +71,12 @@ const CreatePlayList = async (musicianName, apiRecommendationsLink) => {
 const getAPIRecommendations = async (musicianName, apiRecommendationsLink) => {
 	try {
 		let response = await axios.get(`${apiRecommendationsLink}${musicianName}`);
-		return response;
+		// Validated whether response results are empty or not.
+		if(response.Similar.Results[0].length === 0) {
+			return false
+		} else {
+			return response
+		}:
 	} catch (error) {
 		console.log('API tasteDive failed request. Retry.');
 		return false
