@@ -13,3 +13,5 @@ II) Store first 4 recommendations, and it makes web scrapping in youtube getting
 III) Creates playlist with video IDs.
 
 IV) Return as response JSON with the link of the playlist generated.
+
+Front-end in: https://github.com/KevinModernel/Extension-MusicReco
